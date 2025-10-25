@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>古文阅读</title>
+    <style>
+      :root {
+        --bg: #000;
+        --text: #fff;
+        --size: 16px;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-size: var(--size);
+      }
+      .theme-white {
+        --bg: #fff;
+        --text: #000;
+      }
+      .theme-amber {
+        --bg: #fef3c7;
+        --text: #000;
+      }
+      .theme-green {
+        --bg: #9cf6b7;
+        --text: #000;
+      }
+      .size-small {
+        --size: 14px;
+      }
+      .size-large {
+        --size: 18px;
+      }
+      .size-xlarge {
+        --size: 20px;
+      }
+      #content {
+    white-space: break-spaces;  
+    line-height: 1.6; 
+}
+    </style>
+  </head>
+  <body>
+    <select onchange="setTheme(this.value)">
+      <option value="">深色</option>
+      <option value="white">浅色</option>
+      <option value="amber">纸质</option>
+      <option value="green">护眼</option>
+    </select>
+
+    <select onchange="setSize(this.value)">
+      <option value="small">小字</option>
+      <option value="" selected>标准</option>
+      <option value="large">大字</option>
+      <option value="xlarge">特大</option>
+    </select>
+
+    <div id="content">
+一 《孟子梁惠王上》
+孟子见梁惠王。王曰：“叟，不远千里而来，亦将有以利吾国乎？”	
+孟子对曰：“王何必曰利？亦有仁义而已矣。王曰‘何以利吾国’？大夫曰‘何以利吾家’？士庶人曰‘何以利吾身’？上下交征利而国危矣。万乘之国弑其君者，必千乘之家；千乘之国弑其君者，必百乘之家。万取千焉，千取百焉，不为不多矣。苟为后义而先利，不夺不餍。未有仁而遗其亲者也，未有义而后其君者也。王亦曰仁义而已矣，何必曰利？”
+
+注
+上下交征利而国危矣：交，互相
+万乘之国弑其君者，必千乘之家：家 ，卿大夫的采邑
+不夺不餍：餍 ，满足
+
+二 《孔丛子杂训》
+孟轲问牧民何先？子思曰：“先利之。”曰：“君子之所以教民，亦有仁义而已矣，何必曰利。”子思曰：“仁义、固所以利之也。上不仁，则下不得其所；上不义，则下乐为乱也。此为不利大矣。故《易》曰：‘利者、义之和也’，又曰：‘利用安身以崇德也’。此皆利之大者也。”
+
+注
+孟轲问牧民何先：牧，统治
+利用安身以崇德也：用， 用来 。以， 且
+
+    </div>
+        <script>
+      function setTheme(theme) {
+        // 移除现有主题类
+        document.body.className = document.body.className.replace(/theme-\w+/g, '');
+        // 添加新主题类
+        if (theme) {
+          document.body.className += ' theme-' + theme;
+        }
+      }
+
+      function setSize(size) {
+        // 移除现有字号类
+        document.body.className = document.body.className.replace(/size-\w+/g, '');
+        // 添加新字号类
+        if (size) {
+          document.body.className += ' size-' + size;
+        }
+      }
+    </script>
+  </body>
+</html>
