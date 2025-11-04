@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>古文阅读</title>
+    <style>
+      :root {
+        --bg: #000;
+        --text: #fff;
+        --size: 16px;
+      }
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-size: var(--size);
+      }
+      .theme-white {
+        --bg: #fff;
+        --text: #000;
+      }
+      .theme-amber {
+        --bg: #fef3c7;
+        --text: #000;
+      }
+      .theme-green {
+        --bg: #9cf6b7;
+        --text: #000;
+      }
+      .size-small {
+        --size: 14px;
+      }
+      .size-large {
+        --size: 18px;
+      }
+      .size-xlarge {
+        --size: 20px;
+      }
+      #content {
+    white-space: break-spaces;  
+    line-height: 1.6; 
+}
+    </style>
+  </head>
+  <body>
+    <select onchange="setTheme(this.value)">
+      <option value="">深色</option>
+      <option value="white">浅色</option>
+      <option value="amber">纸质</option>
+      <option value="green">护眼</option>
+    </select>
+
+    <select onchange="setSize(this.value)">
+      <option value="small">小字</option>
+      <option value="" selected>标准</option>
+      <option value="large">大字</option>
+      <option value="xlarge">特大</option>
+    </select>
+
+    <div id="content">梁惠王曰：“晋国，天下莫强焉，叟之所知也。及寡人之身，东败于齐，长子死焉；西丧地于秦七百里；南辱于楚。寡人耻之，愿比死者一洒之，如之何则可？”		
+孟子对曰：“地方百里而可以王。王如施仁政于民，省刑罚，薄税敛，深耕易耨。壮者以暇日修其孝悌忠信，入以事其父兄，出以事其长上，可使制梃以挞秦楚之坚甲利兵矣。彼夺其民时，使不得耕耨以养其父母，父母冻饿，兄弟妻子离散。彼陷溺其民，王往而征之，夫谁与王敌？故曰：‘仁者无敌。’王请勿疑！”
+孟子见梁襄王。出，语人曰：“望之不似人君，就之而不见所畏焉。卒然问曰：‘天下恶乎定？’吾对曰：‘定于一。’
+‘孰能一之？’对曰：‘不嗜杀人者能一之。’	
+‘孰能与之？’对曰：‘天下莫不与也。王知夫苗乎？七八月之间旱，则苗槁矣。天油然作云，沛然下雨，则苗浡然兴之矣。其如是，孰能御之？今夫天下之人牧，未有不嗜杀人者也，如有不嗜杀人者，则天下之民皆引领而望之矣。诚如是也，民归之，由水之就下，沛然谁能御之？’”
+注：
+晋国：韩赵魏三家分晋，称为三晋，梁惠王徙都大梁，故魏也称为梁，此处即梁惠王自称魏国为晋国
+愿比死者一洒之：为死者雪耻
+地方百里而可以王：地方百里，方圆百里。
+深耕易耨：耨，耘，即除草
+可使制梃以挞秦楚之坚甲利兵矣：梃，棍棒
+彼夺其民时：彼，指敌国，下同。夺其民时，违背农时
+彼陷溺其民：陷，使陷于阱。溺，使溺于水。
+语人曰：语，告诉
+就之而不见所畏焉：所畏，令人敬畏的地方
+卒然问曰：卒然，突然
+天下恶乎定：恶，如何
+七八月之间旱：周历七八月
+天油然作云，沛然下雨：油然，形容云盛。沛然，形容雨盛
+今夫天下之人牧：人牧，统治者
+则天下之民皆引领而望之矣：引，伸长。领，脖子
+</div>
+        <script>
+      function setTheme(theme) {
+        // 移除现有主题类
+        document.body.className = document.body.className.replace(/theme-\w+/g, '');
+        // 添加新主题类
+        if (theme) {
+          document.body.className += ' theme-' + theme;
+        }
+      }
+
+      function setSize(size) {
+        // 移除现有字号类
+        document.body.className = document.body.className.replace(/size-\w+/g, '');
+        // 添加新字号类
+        if (size) {
+          document.body.className += ' size-' + size;
+        }
+      }
+    </script>
+  </body>
+</html>
