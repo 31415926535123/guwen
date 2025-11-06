@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html>
+
   <head>
+    <meta name="viewport" content="width=device-width">
     <meta charset="UTF-8" />
     <title>古文阅读</title>
     <style>
-      :root {
-        --bg: #000;
-        --text: #fff;
-        --size: 16px;
-      }
       body {
         background: var(--bg);
         color: var(--text);
         font-size: var(--size);
       }
+      .theme-black {
+        --bg: #000;
+        --text: #fff;
+      }
+
       .theme-white {
         --bg: #fff;
         --text: #000;
@@ -29,6 +30,9 @@
       .size-small {
         --size: 14px;
       }
+      .size-standard {
+        --size: 16px;
+      }
       .size-large {
         --size: 18px;
       }
@@ -39,23 +43,54 @@
     white-space: break-spaces;  
     line-height: 1.6; 
 }
+#theme-select, #size-select {
+        width: 200px;
+        height: 50px;
+      }
+      .button-group {
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .button-group span {
+        font-weight: bold;
+        min-width: 50px;
+      }
+      .theme-btn, .size-btn {
+        padding: 8px 16px;
+        border: 2px solid var(--text);
+        background: var(--bg);
+        color: var(--text);
+        cursor: pointer;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+      }
+      .theme-btn:hover, .size-btn:hover {
+        opacity: 0.8;
+      }
+      .theme-btn.active, .size-btn.active {
+        background: var(--text);
+        color: var(--bg);
+      }
     </style>
   </head>
   <body>
-    <select onchange="setTheme(this.value)">
-      <option value="">深色</option>
-      <option value="white">浅色</option>
-      <option value="amber">纸质</option>
-      <option value="green">护眼</option>
-    </select>
+    <div class="button-group">
+      <span>主题：</span>
+      <button class="theme-btn" onclick="setTheme('black')">深色</button>
+      <button class="theme-btn" onclick="setTheme('white')">浅色</button>
+      <button class="theme-btn" onclick="setTheme('amber')">纸质</button>
+      <button class="theme-btn" onclick="setTheme('green')">护眼</button>
+    </div>
 
-    <select onchange="setSize(this.value)">
-      <option value="small">小字</option>
-      <option value="" selected>标准</option>
-      <option value="large">大字</option>
-      <option value="xlarge">特大</option>
-    </select>
-
+    <div class="button-group">
+      <span>字号：</span>
+      <button class="size-btn" onclick="setSize('small')">小字</button>
+      <button class="size-btn" onclick="setSize('standard')">标准</button>
+      <button class="size-btn" onclick="setSize('large')">大字</button>
+      <button class="size-btn" onclick="setSize('xlarge')">特大</button>
+    </div>
     <div id="content">梁惠王曰：“晋国，天下莫强焉，叟之所知也。及寡人之身，东败于齐，长子死焉；西丧地于秦七百里；南辱于楚。寡人耻之，愿比死者一洒之，如之何则可？”		
 孟子对曰：“地方百里而可以王。王如施仁政于民，省刑罚，薄税敛，深耕易耨。壮者以暇日修其孝悌忠信，入以事其父兄，出以事其长上，可使制梃以挞秦楚之坚甲利兵矣。彼夺其民时，使不得耕耨以养其父母，父母冻饿，兄弟妻子离散。彼陷溺其民，王往而征之，夫谁与王敌？故曰：‘仁者无敌。’王请勿疑！”
 孟子见梁襄王。出，语人曰：“望之不似人君，就之而不见所畏焉。卒然问曰：‘天下恶乎定？’吾对曰：‘定于一。’
@@ -79,6 +114,7 @@
 则天下之民皆引领而望之矣：引，伸长。领，脖子
 </div>
         <script>
+          setTheme('amber');
       function setTheme(theme) {
         // 移除现有主题类
         document.body.className = document.body.className.replace(/theme-\w+/g, '');
@@ -86,6 +122,12 @@
         if (theme) {
           document.body.className += ' theme-' + theme;
         }
+        
+        // 更新按钮激活状态
+        document.querySelectorAll('.theme-btn').forEach(btn => {
+          btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
       }
 
       function setSize(size) {
@@ -93,8 +135,15 @@
         document.body.className = document.body.className.replace(/size-\w+/g, '');
         // 添加新字号类
         if (size) {
-          document.body.className += ' size-' + size;
+   
+       document.body.className += ' size-' + size;
         }
+        
+        // 更新按钮激活状态
+        document.querySelectorAll('.size-btn').forEach(btn => {
+          btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
       }
     </script>
   </body>

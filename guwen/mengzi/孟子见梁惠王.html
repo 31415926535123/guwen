@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html>
+
   <head>
+    <meta name="viewport" content="width=device-width">
     <meta charset="UTF-8" />
     <title>古文阅读</title>
     <style>
-      :root {
-        --bg: #000;
-        --text: #fff;
-        --size: 16px;
-      }
       body {
         background: var(--bg);
         color: var(--text);
         font-size: var(--size);
       }
+      .theme-black {
+        --bg: #000;
+        --text: #fff;
+      }
+
       .theme-white {
         --bg: #fff;
         --text: #000;
@@ -29,6 +30,9 @@
       .size-small {
         --size: 14px;
       }
+      .size-standard {
+        --size: 16px;
+      }
       .size-large {
         --size: 18px;
       }
@@ -39,23 +43,54 @@
     white-space: break-spaces;  
     line-height: 1.6; 
 }
+#theme-select, #size-select {
+        width: 200px;
+        height: 50px;
+      }
+      .button-group {
+        margin: 10px 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .button-group span {
+        font-weight: bold;
+        min-width: 50px;
+      }
+      .theme-btn, .size-btn {
+        padding: 8px 16px;
+        border: 2px solid var(--text);
+        background: var(--bg);
+        color: var(--text);
+        cursor: pointer;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+      }
+      .theme-btn:hover, .size-btn:hover {
+        opacity: 0.8;
+      }
+      .theme-btn.active, .size-btn.active {
+        background: var(--text);
+        color: var(--bg);
+      }
     </style>
   </head>
   <body>
-    <select onchange="setTheme(this.value)">
-      <option value="">深色</option>
-      <option value="white">浅色</option>
-      <option value="amber">纸质</option>
-      <option value="green">护眼</option>
-    </select>
+    <div class="button-group">
+      <span>主题：</span>
+      <button class="theme-btn" onclick="setTheme('black')">深色</button>
+      <button class="theme-btn" onclick="setTheme('white')">浅色</button>
+      <button class="theme-btn" onclick="setTheme('amber')">纸质</button>
+      <button class="theme-btn" onclick="setTheme('green')">护眼</button>
+    </div>
 
-    <select onchange="setSize(this.value)">
-      <option value="small">小字</option>
-      <option value="" selected>标准</option>
-      <option value="large">大字</option>
-      <option value="xlarge">特大</option>
-    </select>
-
+    <div class="button-group">
+      <span>字号：</span>
+      <button class="size-btn" onclick="setSize('small')">小字</button>
+      <button class="size-btn" onclick="setSize('standard')">标准</button>
+      <button class="size-btn" onclick="setSize('large')">大字</button>
+      <button class="size-btn" onclick="setSize('xlarge')">特大</button>
+    </div>
     <div id="content">一 《孟子梁惠王上》
 孟子见梁惠王。王曰：“叟，不远千里而来，亦将有以利吾国乎？”	
 孟子对曰：“王何必曰利？亦有仁义而已矣。王曰‘何以利吾国’？大夫曰‘何以利吾家’？士庶人曰‘何以利吾身’？上下交征利而国危矣。万乘之国弑其君者，必千乘之家；千乘之国弑其君者，必百乘之家。万取千焉，千取百焉，不为不多矣。苟为后义而先利，不夺不餍。未有仁而遗其亲者也，未有义而后其君者也。王亦曰仁义而已矣，何必曰利？”
@@ -73,6 +108,7 @@
 利用安身以崇德也：用， 用来 。以， 且
 </div>
         <script>
+          setTheme('amber');
       function setTheme(theme) {
         // 移除现有主题类
         document.body.className = document.body.className.replace(/theme-\w+/g, '');
@@ -80,6 +116,12 @@
         if (theme) {
           document.body.className += ' theme-' + theme;
         }
+        
+        // 更新按钮激活状态
+        document.querySelectorAll('.theme-btn').forEach(btn => {
+          btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
       }
 
       function setSize(size) {
@@ -87,8 +129,15 @@
         document.body.className = document.body.className.replace(/size-\w+/g, '');
         // 添加新字号类
         if (size) {
-          document.body.className += ' size-' + size;
+   
+       document.body.className += ' size-' + size;
         }
+        
+        // 更新按钮激活状态
+        document.querySelectorAll('.size-btn').forEach(btn => {
+          btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
       }
     </script>
   </body>
