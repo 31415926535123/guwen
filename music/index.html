@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta
+      charset="UTF-8"
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>music</title>
+    <style>
+      html,
+      body {
+        background-color: black;
+        display: flex;
+        justify-content: center; /* 水平居中 */
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <label id="chooseMusic" for="music"> 请选择音乐文件 </label>
+    <input type="file" id="music" />
+    <script>
+      function callback(e) {
+        url = URL.createObjectURL(e.target.files[0]);
+        console.log(url);
+        const audio = new Audio(url);
+        audio.loop = 1;
+        audio.play();
+      }
+      music = document.getElementById("music");
+      music.style.opacity = 0;
+      music.addEventListener("change", callback);
+      const tag = document.getElementById("chooseMusic");
+      tag.style.cssText =
+        "padding:12px 24px;margin:auto auto auto auto;border-radius:1px; font-size:33px;  color:white;background:#000000; ";
+    </script>
+  </body>
+</html>
